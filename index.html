@@ -141,6 +141,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-免越狱版iOS抢红包插件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/12/免越狱版iOS抢红包插件/">免越狱版iOS抢红包插件</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/12/免越狱版iOS抢红包插件/" class="archive-article-date">
+  	<time datetime="2017-01-12T08:20:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个库的作用就是能在程序运行的时候动态加载我们自己写的 dylib 动态运行库。而由于非越狱手机系统里面是没有这个库的，所以我们需要直接将这个库打包进 ipa 当中，使用它的 API 实现注入。</p>
+<p>关于注入的原理，可以参考这篇文章：<a href="http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653577384&amp;idx=1&amp;sn=b44a9c9651bf09c5bea7e0337031c53c&amp;scene=0#wechat_redirect" title="移动App入侵与逆向破解技术－iOS篇" target="_blank" rel="external">移动App入侵与逆向破解技术－iOS篇</a>。</p>
+<h4 id="获取砸壳版本的微信-ipa"><a href="#获取砸壳版本的微信-ipa" class="headerlink" title="获取砸壳版本的微信 ipa"></a>获取砸壳版本的微信 ipa</h4><p>因为在 AppStore 上面下载得到的应用都是经过加密的，可以执行文件上已经被加过一层壳，所以我们需要先拿到砸过壳版本的微信应用。</p>
+<p>有两种方法：</p>
+<ol>
+<li>直接在爱思助手下载</li>
+<li>使用 Clutch 对越狱手机上应用进行砸壳<br>由于手上没有越狱的设备，于是选择了第一种，在爱思助手上下载了微信6.5.3版本。(尝试过使用pp助手下载越狱版微信，但是发现还是被加密了)</li>
+</ol>
+<p>确认app是否加密<br>第一步，解压获得二进制文件，并查看包含的架构<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ unzip WeChat.ipa <span class="_">-d</span> wechat</div><div class="line">...</div><div class="line">$ <span class="built_in">cd</span> wechat/Payload/WeChat.app/</div><div class="line">$ file Wechat</div><div class="line">Wechat: Mach-O universal binary with 2 architectures</div><div class="line">Wechat (<span class="keyword">for</span> architecture armv7):    Mach-O executable arm</div><div class="line">Wechat (<span class="keyword">for</span> architecture arm64):    Mach-O 64-bit executable</div></pre></td></tr></table></figure></p>
+<p>第二步，通过 otool -l 输出 app load commands ，然后查看 cryptid 标志位的值是否为 0（0表示未加密，1表示已加密）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ otool <span class="_">-l</span> Wechat | grep crypt</div><div class="line">cryptoff 16384</div><div class="line">cryptsize 38748160</div><div class="line">cryptid 0</div><div class="line">cryptoff 16384</div><div class="line">cryptsize 41467904</div><div class="line">cryptid 0</div></pre></td></tr></table></figure></p>
+<h4 id="准备-dylib-动态链接库"><a href="#准备-dylib-动态链接库" class="headerlink" title="准备 dylib 动态链接库"></a>准备 dylib 动态链接库</h4><p>这步就很简单了，我选择到<a href="https://github.com/buginux" title="buginux" target="_blank" rel="external">buginux</a>的<a href="https://github.com/buginux/WeChatRedEnvelop" title="WeChatRedEnvelop" target="_blank" rel="external">WeChatRedEnvelop</a>上把源码 clone 下来，然后执行 make 命令，就能拿到 dylib 文件了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/buginux/WeChatRedEnvelop.git</div><div class="line">$ <span class="built_in">cd</span> WeChatRedEnvelop</div><div class="line">$ make </div><div class="line"><span class="comment"># &gt; Making all for tweak WeChatRedEnvelop…</span></div><div class="line"><span class="comment"># ==&gt; Preprocessing Tweak.xm…</span></div><div class="line"><span class="comment"># ==&gt; Compiling Tweak.xm (armv7)…</span></div><div class="line"><span class="comment"># ==&gt; Compiling XGPayingViewController.m (armv7)…</span></div><div class="line"><span class="comment"># ...</span></div><div class="line"><span class="comment"># ==&gt; Signing WeChatRedEnvelop…</span></div><div class="line">$ cp .theos/obj/debug/WeChatRedEnvelop.dylib ~/Desktop <span class="comment"># 注意是 .theos 目录，这是个隐藏目录</span></div></pre></td></tr></table></figure></p>
+<p>将生成的 dylib 文件拷贝到桌面，跟刚刚砸过壳的微信应用放到一个目录层级。</p>
+<h4 id="检查依赖项"><a href="#检查依赖项" class="headerlink" title="检查依赖项"></a>检查依赖项</h4><p>使用 macOS 自带的 otool 工具就可以进行依赖项检查：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ otool -L WeChatRedEnvelop.dylib</div><div class="line">WeChatRedEnvelop.dylib (architecture armv7):</div><div class="line">/Library/MobileSubstrate/DynamicLibraries/WeChatRedEnvelop.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)</div><div class="line">/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version 300.0.0, current version 1349.1.0)</div><div class="line">/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version 150.0.0, current version 1348.0.0)</div><div class="line">/System/Library/Frameworks/UIKit.framework/UIKit (compatibility version 1.0.0, current version 3600.5.2)</div><div class="line">/usr/lib/libsubstrate.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 307.4.0)</div><div class="line">/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1238.0.0)</div><div class="line">WeChatRedEnvelop.dylib (architecture arm64):</div><div class="line">/Library/MobileSubstrate/DynamicLibraries/WeChatRedEnvelop.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)</div><div class="line">/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version 300.0.0, current version 1349.1.0)</div><div class="line">/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version 150.0.0, current version 1348.0.0)</div><div class="line">/System/Library/Frameworks/UIKit.framework/UIKit (compatibility version 1.0.0, current version 3600.5.2)</div><div class="line">/usr/lib/libsubstrate.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 307.4.0)</div><div class="line">/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1238.0.0)</div></pre></td></tr></table></figure></p>
+<p>可以看到除了 substrate 库，其它依赖的都是系统自带的库。我们将 libsubstrate.dylib 拷出，使用 install_name_tool 命令修改动态库的路径，指向 app 二进制文件的同级目录。</p>
+<p>如果你的系统中不是 /usr/lib/libsubstrate.dylib 而是 /Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate的话<br>下载链接: <a href="https://pan.baidu.com/s/1qXBqHSo" target="_blank" rel="external">https://pan.baidu.com/s/1qXBqHSo</a> 密码: efvy<br>然后执行：<br>$ install_name_tool -change /Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate @loader_path/libsubstrate.dylib WeChatRedEnvelop.dylib</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$ scp root@&lt;your.device.ip&gt;:/usr/lib/libsubstrate.dylib ~/Desktop</div><div class="line">$ install_name_tool -change /Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate @loader_path/libsubstrate.dylib WeChatRedEnvelop.dylib</div><div class="line">$ otool -L WeChatRedEnvelop.dylib</div><div class="line">WeChatRedEnvelop.dylib (architecture armv7):</div><div class="line">/Library/MobileSubstrate/DynamicLibraries/WeChatRedEnvelop.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)</div><div class="line">/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version 300.0.0, current version 1349.1.0)</div><div class="line">/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version 150.0.0, current version 1348.0.0)</div><div class="line">/System/Library/Frameworks/UIKit.framework/UIKit (compatibility version 1.0.0, current version 3600.5.2)</div><div class="line">@loader_path/libsubstrate.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 307.4.0)</div><div class="line">/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1238.0.0)</div><div class="line">WeChatRedEnvelop.dylib (architecture arm64):</div><div class="line">/Library/MobileSubstrate/DynamicLibraries/WeChatRedEnvelop.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)</div><div class="line">/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version 300.0.0, current version 1349.1.0)</div><div class="line">/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version 150.0.0, current version 1348.0.0)</div><div class="line">/System/Library/Frameworks/UIKit.framework/UIKit (compatibility version 1.0.0, current version 3600.5.2)</div><div class="line">@loader_path/libsubstrate.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 307.4.0)</div><div class="line">/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1238.0.0)</div></pre></td></tr></table></figure>
+<p>可以看到 libsubstrate.dylib 的路径已经变更了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+
+		<span id="busuanzi_container_page_pv" style="display: none">
+		</span>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/12/免越狱版iOS抢红包插件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-mac下php安装mcrypt扩展" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -428,15 +510,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">移动开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">移动开发</a>
               </li>
             
             <div class="clearfix"></div>
