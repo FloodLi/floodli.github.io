@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="FloodLi的博客">
 <meta property="og:description" content="最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。
 原理虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个">
-<meta property="og:updated_time" content="2017-01-12T09:38:53.000Z">
+<meta property="og:updated_time" content="2017-01-12T09:42:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="免越狱版iOS抢红包插件">
 <meta name="twitter:description" content="最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。
@@ -169,7 +169,8 @@
         <p>最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。</p>
 <h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个库的作用就是能在程序运行的时候动态加载我们自己写的 dylib 动态运行库。而由于非越狱手机系统里面是没有这个库的，所以我们需要直接将这个库打包进 ipa 当中，使用它的 API 实现注入。</p>
 <p>关于注入的原理，可以参考这篇文章：<a href="http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653577384&amp;idx=1&amp;sn=b44a9c9651bf09c5bea7e0337031c53c&amp;scene=0#wechat_redirect" title="移动App入侵与逆向破解技术－iOS篇" target="_blank" rel="external">移动App入侵与逆向破解技术－iOS篇</a>。</p>
-<h4 id="获取砸壳版本的微信-ipa"><a href="#获取砸壳版本的微信-ipa" class="headerlink" title="获取砸壳版本的微信 ipa"></a>获取砸壳版本的微信 ipa</h4><p>因为在 AppStore 上面下载得到的应用都是经过加密的，可以执行文件上已经被加过一层壳，所以我们需要先拿到砸过壳版本的微信应用。</p>
+<h4 id="获取砸壳版本的微信-ipa"><a href="#获取砸壳版本的微信-ipa" class="headerlink" title="获取砸壳版本的微信 ipa"></a>获取砸壳版本的微信 ipa</h4><a id="more"></a>
+<p>因为在 AppStore 上面下载得到的应用都是经过加密的，可以执行文件上已经被加过一层壳，所以我们需要先拿到砸过壳版本的微信应用。</p>
 <p>有两种方法：</p>
 <ol>
 <li>直接在爱思助手下载</li>
