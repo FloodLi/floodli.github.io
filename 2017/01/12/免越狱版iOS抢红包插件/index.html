@@ -16,11 +16,14 @@
 <meta property="og:site_name" content="FloodLi的博客">
 <meta property="og:description" content="最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。
 原理虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个">
-<meta property="og:updated_time" content="2017-01-12T09:42:15.000Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/免越狱版iOS抢红包插件01.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/免越狱版iOS抢红包插件02.png">
+<meta property="og:updated_time" content="2017-01-13T06:48:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="免越狱版iOS抢红包插件">
 <meta name="twitter:description" content="最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。
 原理虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/免越狱版iOS抢红包插件01.png">
   
     <link rel="alternative" href="/atom.xml" title="FloodLi的博客" type="application/atom+xml">
   
@@ -185,6 +188,20 @@
 <p>如果你的系统中不是 /usr/lib/libsubstrate.dylib 而是 /Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate的话<br>下载链接: <a href="https://pan.baidu.com/s/1qXBqHSo" target="_blank" rel="external">https://pan.baidu.com/s/1qXBqHSo</a> 密码: efvy<br>然后执行：<br>$ install_name_tool -change /Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate @loader_path/libsubstrate.dylib WeChatRedEnvelop.dylib</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$ scp root@&lt;your.device.ip&gt;:/usr/lib/libsubstrate.dylib ~/Desktop</div><div class="line">$ install_name_tool -change /Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate @loader_path/libsubstrate.dylib WeChatRedEnvelop.dylib</div><div class="line">$ otool -L WeChatRedEnvelop.dylib</div><div class="line">WeChatRedEnvelop.dylib (architecture armv7):</div><div class="line">/Library/MobileSubstrate/DynamicLibraries/WeChatRedEnvelop.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)</div><div class="line">/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version 300.0.0, current version 1349.1.0)</div><div class="line">/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version 150.0.0, current version 1348.0.0)</div><div class="line">/System/Library/Frameworks/UIKit.framework/UIKit (compatibility version 1.0.0, current version 3600.5.2)</div><div class="line">@loader_path/libsubstrate.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 307.4.0)</div><div class="line">/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1238.0.0)</div><div class="line">WeChatRedEnvelop.dylib (architecture arm64):</div><div class="line">/Library/MobileSubstrate/DynamicLibraries/WeChatRedEnvelop.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)</div><div class="line">/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version 300.0.0, current version 1349.1.0)</div><div class="line">/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version 150.0.0, current version 1348.0.0)</div><div class="line">/System/Library/Frameworks/UIKit.framework/UIKit (compatibility version 1.0.0, current version 3600.5.2)</div><div class="line">@loader_path/libsubstrate.dylib (compatibility version 0.0.0, current version 0.0.0)</div><div class="line">/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 307.4.0)</div><div class="line">/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1238.0.0)</div></pre></td></tr></table></figure>
 <p>可以看到 libsubstrate.dylib 的路径已经变更了。</p>
+<h4 id="将动态链接库注入二进制文件中"><a href="#将动态链接库注入二进制文件中" class="headerlink" title="将动态链接库注入二进制文件中"></a>将动态链接库注入二进制文件中</h4><p>接下来，就需要将我们的库注入到微信的二进制文件中，可以使用开源的 <a href="https://github.com/alexzielenski/optool" title="optool" target="_blank" rel="external">optool</a> 工具。<br>编译安装 optool 工具：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> --recursive https://github.com/alexzielenski/optool.git</div><div class="line">$ <span class="built_in">cd</span> optool</div><div class="line">$ xcodebuild -project optool.xcodeproj -configuration Release ARCHS=<span class="string">"i386 x86_64"</span> build</div></pre></td></tr></table></figure></p>
+<p>将砸壳过的 ipa 文件解压，然后将 libsubstrate.dylib 与 WeChatRedEnvelop.dylib 拷贝到解压后的 WeChat.app 目录下。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/Desktop</div><div class="line">$ unzip wechat.ipa <span class="_">-d</span> wechat</div><div class="line">$ cp libsubstrate.dylib WeChatRedEnvelop.dylib wechat/Payload/WeChat.app</div></pre></td></tr></table></figure></p>
+<p>使用 optool 把 WeChatRedEnvelop.dylib 注入到二进制文件中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /path/to/optool install -c load -p <span class="string">"@executable_path/WeChatRedEnvelop.dylib"</span> -t wechat/Payload/WeChat.app/WeChat</div></pre></td></tr></table></figure></p>
+<p>在开始打包之前，请先将 WeChat.app 里面的 Watch 目录删除，这个目录是跟 Watch 有关的，如果不删除的话，会导致后继的安装步骤出问题。出现 A WatchKit app within this app is not a valid bundle 的错误。</p>
+<h4 id="打包并重签名"><a href="#打包并重签名" class="headerlink" title="打包并重签名"></a>打包并重签名</h4><p>打包 ipa 与重签名可以直接使用图形化工具 <a href="https://github.com/DanTheMan827/ios-app-signer" title="ios-app-signer" target="_blank" rel="external">ios-app-signer</a> 来完成。</p>
+<p>这个工具可以自动加载出本机的证书以及 Provisioning Profile 文件，使用起来十分方便，当然也可以手动选择证书文件。<br>如果是使用个人开发者证书，需要先将设备的 UUID 加到 Provisioning Profile 中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果是使用个人开发者证书，需要先将设备的 UUID 加到 Provisioning Profile 中。</div></pre></td></tr></table></figure></p>
+<p>我这里是直接从一个 archive 过的应用中提取 embedded.mobileprovision 文件，并在 Provisioning Profile 一栏中选择 Choose Custom File 使用这个文件。<br><img src="/assets/blogImg/免越狱版iOS抢红包插件01.png" alt=""><br>点击 start 后，指定保存路径，iOS App Signer 就会帮你搞定所有事情。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>安装ideviceinstaller<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">安装ipa包用的，也可以通过itool之类的工具，不过ideviceinstaller可以看到安装过程的过程，方便我们找到出错原因。</div></pre></td></tr></table></figure></p>
+<p>执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install ideviceinstaller</div></pre></td></tr></table></figure></p>
+<p>如果提示brew命令找不到，那就是你的Mac还没有安装Homebrew<br>常见的报错信息：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR: Could not connect to lockdownd, error code -5</div></pre></td></tr></table></figure></p>
+<p>这个时候只要重新安装libimobiledevice就可以了（因为ideviceinstaller依赖很多其他插件）<br>执行下面的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$   brew uninstall libimobiledevice</div><div class="line">$   brew install --HEAD libimobiledevice</div></pre></td></tr></table></figure></p>
+<p>连上你的手机执行下面的命令查看ideviceinstaller是否连接上手机：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ideviceinfo</div></pre></td></tr></table></figure></p>
+<p>如果打印出一大堆手机的信息表示连接成功可以安装ipa包，如果不成功请根据错误提示进行调整。执行下面的命令进行安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ ideviceinstaller -i WeChat.ipa </div><div class="line">WARNING: could not locate iTunesMetadata.plist <span class="keyword">in</span> archive!</div><div class="line">WARNING: could not locate Payload/WeChat.app/SC_Info/WeChat.sinf <span class="keyword">in</span> archive!</div><div class="line">Copying <span class="string">'WeChat.ipa'</span> to device... DONE.</div><div class="line">Installing <span class="string">'com.xxxxxxxxxxxx'</span></div><div class="line">- CreatingStagingDirectory (5%)</div><div class="line">- ExtractingPackage (15%)</div><div class="line">- InspectingPackage (20%)</div><div class="line">- TakingInstallLock (20%)</div><div class="line">- PreflightingApplication (30%)</div><div class="line">- InstallingEmbeddedProfile (30%)</div><div class="line">- VerifyingApplication (40%)</div><div class="line">- CreatingContainer (50%)</div><div class="line">- InstallingApplication (60%)</div><div class="line">- PostflightingApplication (70%)</div><div class="line">- SandboxingApplication (80%)</div><div class="line">- GeneratingApplicationMap (90%)</div><div class="line">- Complete</div></pre></td></tr></table></figure></p>
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p><img src="/assets/blogImg/免越狱版iOS抢红包插件02.png" alt=""></p>
 
       
 
@@ -198,7 +215,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">移动开发</a>
         		</li>
       		
 		</ul>
@@ -285,25 +302,7 @@
 
 
   
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="免越狱版iOS抢红包插件" data-title="免越狱版iOS抢红包插件" data-url="http://yoursite.com/2017/01/12/免越狱版iOS抢红包插件/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"Floodli"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    <div class="duoshuo"></div>
   
 
 
