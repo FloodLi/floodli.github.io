@@ -6,14 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2016/11 | FloodLi的博客</title>
+  <title>Mac下启动Tomcat | FloodLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="FloodLi的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2016/11/index.html">
+  <meta name="description" content="一、安装Java官网下载jdk安装地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+二、下载启动Tomcat1.下载Tomcat，地址：http://tomcat.apache.org/download-80.cgimac下载zip和tar.gz都行，我下载的是zip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac下启动Tomcat">
+<meta property="og:url" content="http://yoursite.com/2017/01/23/Start_Tomcat/index.html">
 <meta property="og:site_name" content="FloodLi的博客">
+<meta property="og:description" content="一、安装Java官网下载jdk安装地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+二、下载启动Tomcat1.下载Tomcat，地址：http://tomcat.apache.org/download-80.cgimac下载zip和tar.gz都行，我下载的是zip">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_download.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_instail.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_start.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcar_user.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_edit_bash_profile.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_setclasspath.png">
+<meta property="og:updated_time" content="2017-01-23T08:13:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FloodLi的博客">
+<meta name="twitter:title" content="Mac下启动Tomcat">
+<meta name="twitter:description" content="一、安装Java官网下载jdk安装地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+二、下载启动Tomcat1.下载Tomcat，地址：http://tomcat.apache.org/download-80.cgimac下载zip和tar.gz都行，我下载的是zip">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/tomcat_download.png">
   
     <link rel="alternative" href="/atom.xml" title="FloodLi的博客" type="application/atom+xml">
   
@@ -139,42 +153,55 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Start_Tomcat" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/25/mac下php安装mcrypt扩展/" class="archive-article-date">
-  	<time datetime="2016-11-25T01:45:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/25/mac下php安装mcrypt扩展/">mac下php安装mcrypt扩展</a>
+    <h1 class="article-title" itemprop="name">
+      Mac下启动Tomcat
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/01/23/Start_Tomcat/" class="archive-article-date">
+  	<time datetime="2017-01-23T07:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、安装Java"><a href="#一、安装Java" class="headerlink" title="一、安装Java"></a>一、安装Java</h4><p>官网下载jdk安装<br>地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+<h4 id="二、下载启动Tomcat"><a href="#二、下载启动Tomcat" class="headerlink" title="二、下载启动Tomcat"></a>二、下载启动Tomcat</h4><p>1.下载Tomcat，地址：<a href="http://tomcat.apache.org/download-80.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-80.cgi</a><br>mac下载zip和tar.gz都行，我下载的是zip<br><img src="/assets/blogImg/tomcat_download.png" alt=""><br><a id="more"></a></p>
+<p>2.解压缩之后直接拷贝到资源库中，为方便管理解压后文件夹名称为Tomcat，具体位置如下:<br><img src="/assets/blogImg/tomcat_instail.png" alt=""></p>
+<p>打开终端，输入以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo sh /Library/Tomcat/bin/startup.sh</div></pre></td></tr></table></figure></p>
+<p>浏览器中输入localhost:8080，就可以看到一下效果:<br><img src="/assets/blogImg/tomcat_start.png" alt=""></p>
+<h4 id="三、安装过程中遇到的问题"><a href="#三、安装过程中遇到的问题" class="headerlink" title="三、安装过程中遇到的问题"></a>三、安装过程中遇到的问题</h4><blockquote>
+<p>1.执行启动命令时提示No such file or directory错误</p>
+</blockquote>
+<p>需要执行以下命令赋予权限：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo chmod 755 /Library/Tomcat/bin/*.sh</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>2.执行启动命令时提示JAVA_HOME或JRE_HOME错误</p>
+</blockquote>
+<p>修改用户全局变量：<br>打开用户根目录下的.bash_profile文件<br><img src="/assets/blogImg/tomcar_user.png" alt=""><br>添加如下两行，如图<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=`/usr/libexec/java_home`</div><div class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</div></pre></td></tr></table></figure></p>
+<p><img src="/assets/blogImg/tomcat_edit_bash_profile.png" alt=""><br>更新配置的环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> .bash_profile</div></pre></td></tr></table></figure></p>
+<p>也可以修改Tomcat/bin/setclasspath.sh环境变量<br><img src="/assets/blogImg/tomcat_setclasspath.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
         		</li>
       		
 		</ul>
@@ -183,19 +210,106 @@
 		</span>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/23/Start_Tomcat/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/01/17/UI_Animation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">layer层动画</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Start_Tomcat" data-title="Mac下启动Tomcat" data-url="http://yoursite.com/2017/01/23/Start_Tomcat/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Floodli"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -231,8 +345,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
