@@ -6,14 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>FloodLi的博客</title>
+  <title>静态库.a打包技巧 | FloodLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="FloodLi的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="简介在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）静态库和动态库的存在形式12静态库：.a 和 .framework动态库：.dylib 和 .framework
+静态库和动态库的区别12静态库：链接时，静态库会被完整地复制到可执行文件中，被多次使用就有多份冗余拷贝动态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态库.a打包技巧">
+<meta property="og:url" content="http://yoursite.com/2017/04/28/静态库.a打包技巧/index.html">
 <meta property="og:site_name" content="FloodLi的博客">
+<meta property="og:description" content="简介在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）静态库和动态库的存在形式12静态库：.a 和 .framework动态库：.dylib 和 .framework
+静态库和动态库的区别12静态库：链接时，静态库会被完整地复制到可执行文件中，被多次使用就有多份冗余拷贝动态">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/静态库.a打包技巧01.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/静态库.a打包技巧02.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/静态库.a打包技巧03.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/静态库.a打包技巧04.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/静态库.a打包技巧05.png">
+<meta property="og:updated_time" content="2017-04-28T09:17:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FloodLi的博客">
+<meta name="twitter:title" content="静态库.a打包技巧">
+<meta name="twitter:description" content="简介在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）静态库和动态库的存在形式12静态库：.a 和 .framework动态库：.dylib 和 .framework
+静态库和动态库的区别12静态库：链接时，静态库会被完整地复制到可执行文件中，被多次使用就有多份冗余拷贝动态">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/静态库.a打包技巧01.png">
   
     <link rel="alternative" href="/atom.xml" title="FloodLi的博客" type="application/atom+xml">
   
@@ -139,16 +152,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-静态库.a打包技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-静态库.a打包技巧" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/28/静态库.a打包技巧/">静态库.a打包技巧</a>
+    <h1 class="article-title" itemprop="name">
+      静态库.a打包技巧
     </h1>
   
 
@@ -163,147 +174,39 @@
       
         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h5 id="在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）"><a href="#在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）" class="headerlink" title="在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）"></a>在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）</h5><h3 id="静态库和动态库的存在形式"><a href="#静态库和动态库的存在形式" class="headerlink" title="静态库和动态库的存在形式"></a>静态库和动态库的存在形式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">静态库：.a 和 .framework</div><div class="line">动态库：.dylib 和 .framework</div></pre></td></tr></table></figure>
 <h3 id="静态库和动态库的区别"><a href="#静态库和动态库的区别" class="headerlink" title="静态库和动态库的区别"></a>静态库和动态库的区别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">静态库：链接时，静态库会被完整地复制到可执行文件中，被多次使用就有多份冗余拷贝</div><div class="line">动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/04/28/静态库.a打包技巧/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">移动开发</a>
-        		</li>
-      		
-		</ul>
-
-		<span id="busuanzi_container_page_pv" style="display: none">
-		</span>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/28/静态库.a打包技巧/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Start_Tomcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/23/Start_Tomcat/">Mac下启动Tomcat</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/23/Start_Tomcat/" class="archive-article-date">
-  	<time datetime="2017-01-23T07:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="一、安装Java"><a href="#一、安装Java" class="headerlink" title="一、安装Java"></a>一、安装Java</h4><p>官网下载jdk安装<br>地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-<h4 id="二、下载启动Tomcat"><a href="#二、下载启动Tomcat" class="headerlink" title="二、下载启动Tomcat"></a>二、下载启动Tomcat</h4><p>1.下载Tomcat，地址：<a href="http://tomcat.apache.org/download-80.cgi">http://tomcat.apache.org/download-80.cgi</a><br>mac下载zip和tar.gz都行，我下载的是zip<br><img src="/assets/blogImg/tomcat_download.png" alt=""><br>
-        
-          <a class="article-more-a" href="/2017/01/23/Start_Tomcat/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
-        		</li>
-      		
-		</ul>
-
-		<span id="busuanzi_container_page_pv" style="display: none">
-		</span>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/23/Start_Tomcat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-UI_Animation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/17/UI_Animation/">layer层动画</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/17/UI_Animation/" class="archive-article-date">
-  	<time datetime="2017-01-17T10:43:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="一、系统自带动画效果"><a href="#一、系统自带动画效果" class="headerlink" title="一、系统自带动画效果"></a>一、系统自带动画效果</h4><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// layer层动画</span></div><div class="line"><span class="built_in">CATransition</span> *transition = [<span class="built_in">CATransition</span> animation];</div><div class="line"><span class="comment">// 动画效果</span></div><div class="line">transition.type = <span class="string">@"rippleEffect"</span>;</div><div class="line"><span class="comment">// 动画方向</span></div><div class="line">[transition setSubtype: kCATransitionFromBottom];</div><div class="line"><span class="comment">// 动画时长</span></div><div class="line">[transition setDuration:<span class="number">1</span>];</div><div class="line"><span class="comment">// 动画重复次数, NSIntegerMax 无限次数</span></div><div class="line">[transition setRepeatCount:<span class="built_in">NSIntegerMax</span>];</div><div class="line"><span class="comment">// 给myView的layer属性添加一个动画效果</span></div><div class="line">[<span class="keyword">self</span>.myView.layer addAnimation:transition forKey:<span class="string">@"transition"</span>];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>附type值列表</p>
+<a id="more"></a>
+<h3 id="静态库文件的版本（4种）"><a href="#静态库文件的版本（4种）" class="headerlink" title="静态库文件的版本（4种）"></a>静态库文件的版本（4种）</h3><ul>
+<li>真机-Debug版本</li>
+<li>真机-Release版本</li>
+<li>模拟器-Debug版本</li>
+<li>模拟器-Release版本</li>
+</ul>
+<h6 id="Debug-调试-版本"><a href="#Debug-调试-版本" class="headerlink" title="Debug(调试)版本"></a>Debug(调试)版本</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1.含完整的符号信息，以方便调试</div><div class="line">2.不会对代码进行优化</div></pre></td></tr></table></figure>
+<h6 id="Release-发布-版本"><a href="#Release-发布-版本" class="headerlink" title="Release(发布)版本"></a>Release(发布)版本</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1.不会包含完整的符号信息</div><div class="line">2.的执行代码是进行过优化的</div><div class="line">3.的大小会比Debug版本的略小</div><div class="line">4.在执行速度方面，Release版本会更快些（但不意味着会有显著的提升）</div></pre></td></tr></table></figure>
+<h6 id="所以我们一般开发中都打包Release（发布）版本，提供外界"><a href="#所以我们一般开发中都打包Release（发布）版本，提供外界" class="headerlink" title="所以我们一般开发中都打包Release（发布）版本，提供外界"></a>所以我们一般开发中都打包Release（发布）版本，提供外界</h6><h1 id="设备的CPU架构简介（补充知识）"><a href="#设备的CPU架构简介（补充知识）" class="headerlink" title="设备的CPU架构简介（补充知识）"></a>设备的CPU架构简介（补充知识）</h1><h3 id="模拟器："><a href="#模拟器：" class="headerlink" title="模拟器："></a>模拟器：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">4s~5 : i386</div><div class="line">5s~6plus : x86_64</div></pre></td></tr></table></figure>
+<h3 id="模拟器：-1"><a href="#模拟器：-1" class="headerlink" title="模拟器："></a>模拟器：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">3gs~4s : armv7</div><div class="line">5~5c : armv7s （静态库只要支持了armv7，就可以跑在armv7s的架构上）</div><div class="line">5s~6plus : arm64</div></pre></td></tr></table></figure>
+<h1 id="打包疑难点"><a href="#打包疑难点" class="headerlink" title="打包疑难点"></a>打包疑难点</h1><blockquote>
+<p>本文只讨论release(发布)版本</p>
 </blockquote>
-        
-          <a class="article-more-a" href="/2017/01/17/UI_Animation/#more">more >></a>
-        
+<h3 id="1-全平台支持"><a href="#1-全平台支持" class="headerlink" title="1. 全平台支持"></a>1. 全平台支持</h3><h5 id="release版本是提供外界使用的，所以通常需要全平台支持"><a href="#release版本是提供外界使用的，所以通常需要全平台支持" class="headerlink" title="release版本是提供外界使用的，所以通常需要全平台支持"></a>release版本是提供外界使用的，所以通常需要全平台支持</h5><p>如图，对应修改Build Active Architecture Only的为NO即可(本文打包release版所以只修改了release对应的选项)</p>
+<blockquote>
+<p>修改后打包出来静态库文件会变大</p>
+</blockquote>
+<p><img src="/assets/blogImg/静态库.a打包技巧01.png" alt="修改全平台支持" title="修改全平台支持"><br>对应修改Edit Scheme为release<br><img src="/assets/blogImg/静态库.a打包技巧02.png" alt="修改全平台支持" title="修改全平台支持"></p>
+<h3 id="2-同时支持真机与模拟器"><a href="#2-同时支持真机与模拟器" class="headerlink" title="2.同时支持真机与模拟器"></a>2.同时支持真机与模拟器</h3><h5 id="真机和模拟器的静态库，是不一样的，不能同时适用在真机和模拟器上，但要满足这要求的话，要对编译好的两个静态库进行合并"><a href="#真机和模拟器的静态库，是不一样的，不能同时适用在真机和模拟器上，但要满足这要求的话，要对编译好的两个静态库进行合并" class="headerlink" title="真机和模拟器的静态库，是不一样的，不能同时适用在真机和模拟器上，但要满足这要求的话，要对编译好的两个静态库进行合并"></a>真机和模拟器的静态库，是不一样的，不能同时适用在真机和模拟器上，但要满足这要求的话，要对编译好的两个静态库进行合并</h5><blockquote>
+<p>合并后的好坏：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">好：开发过程中既可以在真机上调试，也可以在模拟器上调试</div><div class="line">坏：如果静态库太大，合并打包后，会非常大，因此很多第三方的静态库的.a是区分版本的</div></pre></td></tr></table></figure>
+<p>通过终端命令我们可以合并两个静态库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lipo -create Debug-iphoneos/xxx.a Debug-iphonesimulator/xxx.a -output xxx.a</div></pre></td></tr></table></figure></p>
+<h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><h5 id="每次打包都需要通过终端合并，很烦躁，有没有什么方法能够自动合并呢？"><a href="#每次打包都需要通过终端合并，很烦躁，有没有什么方法能够自动合并呢？" class="headerlink" title="每次打包都需要通过终端合并，很烦躁，有没有什么方法能够自动合并呢？"></a>每次打包都需要通过终端合并，很烦躁，有没有什么方法能够自动合并呢？</h5><p>答案：有<br>可以在Build Phases里添加Run Script Phases，通过脚本来合并<br><img src="/assets/blogImg/静态库.a打包技巧03.png" alt="添加脚本" title="添加脚本"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">if [ &quot;$&#123;ACTION&#125;&quot; = &quot;build&quot; ]</div><div class="line">then</div><div class="line">#目标目录</div><div class="line">INSTALL_DIR=$&#123;SRCROOT&#125;/Products</div><div class="line">#	echo &quot;INSTALL_DIR=$&#123;INSTALL_DIR&#125;&quot;</div><div class="line">#目标头文件目录</div><div class="line">INSTALL_DIR_HEADERS=$&#123;SRCROOT&#125;/Products/Headers</div><div class="line"></div><div class="line">#真机文件</div><div class="line">DEVICE_DIR=$&#123;BUILD_ROOT&#125;/$&#123;CONFIGURATION&#125;-iphoneos</div><div class="line">#	echo &quot;DEVICE_DIR=$&#123;DEVICE_DIR&#125;&quot;</div><div class="line"></div><div class="line">#模拟器文件</div><div class="line">SIMULATOR_DIR=$&#123;BUILD_ROOT&#125;/$&#123;CONFIGURATION&#125;-iphonesimulator</div><div class="line">#	echo &quot;SIMULATOR_DIR=$&#123;SIMULATOR_DIR&#125;&quot;</div><div class="line"></div><div class="line">#判断目标文件夹是否存在，存在则删除该文件夹</div><div class="line">if [ -d &quot;$&#123;INSTALL_DIR&#125;&quot; ]</div><div class="line">then</div><div class="line">rm -rf &quot;$&#123;INSTALL_DIR&#125;&quot;</div><div class="line">fi</div><div class="line">mkdir -p &quot;$&#123;INSTALL_DIR&#125;&quot;</div><div class="line">mkdir -p &quot;$&#123;INSTALL_DIR&#125;/iphone&quot;</div><div class="line">mkdir -p &quot;$&#123;INSTALL_DIR&#125;/simulator&quot;</div><div class="line">mkdir -p &quot;$&#123;INSTALL_DIR_HEADERS&#125;&quot;</div><div class="line"></div><div class="line">#copy .a文件</div><div class="line">cp -R &quot;$&#123;DEVICE_DIR&#125;/lib$&#123;PROJECT_NAME&#125;.a&quot; &quot;$&#123;INSTALL_DIR&#125;/iphone/&quot;</div><div class="line">cp -R &quot;$&#123;SIMULATOR_DIR&#125;/lib$&#123;PROJECT_NAME&#125;.a&quot; &quot;$&#123;INSTALL_DIR&#125;/simulator/&quot;</div><div class="line">#copy头文件</div><div class="line">cp -R &quot;$&#123;DEVICE_DIR&#125;/include&quot; &quot;$&#123;INSTALL_DIR_HEADERS&#125;&quot;</div><div class="line">cp -R &quot;$&#123;DEVICE_DIR&#125;/usr&quot; &quot;$&#123;INSTALL_DIR_HEADERS&#125;&quot;</div><div class="line"></div><div class="line">DEVICE_DIR_A=$&#123;INSTALL_DIR&#125;/iphone/lib$&#123;PROJECT_NAME&#125;.a</div><div class="line">#	echo &quot;DEVICE_DIR_A=$&#123;DEVICE_DIR_A&#125;&quot;</div><div class="line">SIMULATOR_DIR_A=$&#123;INSTALL_DIR&#125;/simulator/lib$&#123;PROJECT_NAME&#125;.a</div><div class="line">#	echo &quot;SIMULATOR_DIR_A=$&#123;SIMULATOR_DIR_A&#125;&quot;</div><div class="line"></div><div class="line"># 合并.a文件</div><div class="line">lipo -create &quot;$&#123;DEVICE_DIR_A&#125;&quot; &quot;$&#123;SIMULATOR_DIR_A&#125;&quot; -output &quot;$&#123;INSTALL_DIR&#125;/lib$&#123;PROJECT_NAME&#125;.a&quot;</div><div class="line">#open &quot;$&#123;DEVICE_DIR&#125;&quot;</div><div class="line">open &quot;$&#123;SRCROOT&#125;/Products&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<p>以后我们只要在模拟器下和真机下各打包一次，脚本就会自动帮我们合并好.a了。</p>
+<blockquote>
+<p>建议打包前clean一下</p>
+</blockquote>
+<p><img src="/assets/blogImg/静态库.a打包技巧04.png" alt="打包后" title="打包后"></p>
+<p>验证合并后的.a<br><img src="/assets/blogImg/静态库.a打包技巧05.png" alt="验证平台" title="验证平台"></p>
+
       
 
       
@@ -328,18 +231,74 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/17/UI_Animation/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/28/静态库.a打包技巧/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/01/23/Start_Tomcat/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac下启动Tomcat</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -347,278 +306,28 @@
 
 
   
-    <article id="post-免越狱版iOS抢红包插件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/12/免越狱版iOS抢红包插件/">免越狱版iOS抢红包插件</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/12/免越狱版iOS抢红包插件/" class="archive-article-date">
-  	<time datetime="2017-01-12T08:20:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。</p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个库的作用就是能在程序运行的时候动态加载我们自己写的 dylib 动态运行库。而由于非越狱手机系统里面是没有这个库的，所以我们需要直接将这个库打包进 ipa 当中，使用它的 API 实现注入。</p>
-<p>关于注入的原理，可以参考这篇文章：<a href="http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653577384&amp;idx=1&amp;sn=b44a9c9651bf09c5bea7e0337031c53c&amp;scene=0#wechat_redirect" title="移动App入侵与逆向破解技术－iOS篇">移动App入侵与逆向破解技术－iOS篇</a>。</p>
-<h4 id="获取砸壳版本的微信-ipa"><a href="#获取砸壳版本的微信-ipa" class="headerlink" title="获取砸壳版本的微信 ipa"></a>获取砸壳版本的微信 ipa</h4>
-        
-          <a class="article-more-a" href="/2017/01/12/免越狱版iOS抢红包插件/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">移动开发</a>
-        		</li>
-      		
-		</ul>
-
-		<span id="busuanzi_container_page_pv" style="display: none">
-		</span>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/12/免越狱版iOS抢红包插件/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="静态库.a打包技巧" data-title="静态库.a打包技巧" data-url="http://yoursite.com/2017/04/28/静态库.a打包技巧/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Floodli"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
   
-    <article id="post-mac下php安装mcrypt扩展" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/25/mac下php安装mcrypt扩展/">mac下php安装mcrypt扩展</a>
-    </h1>
-  
-
-        
-        <a href="/2016/11/25/mac下php安装mcrypt扩展/" class="archive-article-date">
-  	<time datetime="2016-11-25T01:45:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。"><a href="#MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。" class="headerlink" title="MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。"></a>MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。</h1><h5 id="1：下载并解压mcrypt-2-6-8-tar-bz2。（2-6-8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）"><a href="#1：下载并解压mcrypt-2-6-8-tar-bz2。（2-6-8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）" class="headerlink" title="1：下载并解压mcrypt-2.6.8.tar.bz2。（2.6.8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）"></a>1：下载并解压mcrypt-2.6.8.tar.bz2。（2.6.8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）</h5><h5 id="2：在终端执行命令（注意如下命令需要安装xcode支持）："><a href="#2：在终端执行命令（注意如下命令需要安装xcode支持）：" class="headerlink" title="2：在终端执行命令（注意如下命令需要安装xcode支持）："></a>2：在终端执行命令（注意如下命令需要安装xcode支持）：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~/Downloads/mcrypt-2.5.8</div><div class="line">./configure --disable-posix-threads --enable-static</div><div class="line">make</div><div class="line">sudo make install</div></pre></td></tr></table></figure>
-<p>或者使用homebrew安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install mcrypt</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2016/11/25/mac下php安装mcrypt扩展/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-
-		<span id="busuanzi_container_page_pv" style="display: none">
-		</span>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/11/25/mac下php安装mcrypt扩展/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
 
 
-
-
-
-
-
-
-  
-    <article id="post-Switf语法速记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/23/Switf语法速记/">Swift语法速记(转)</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/23/Switf语法速记/" class="archive-article-date">
-  	<time datetime="2016-06-23T01:45:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一-类型"><a href="#一-类型" class="headerlink" title="(一)类型"></a>(一)类型</h1><h2 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="type">Int</span>,<span class="type">String</span>,<span class="type">Double</span>,<span class="class"><span class="keyword">struct</span>,<span class="title">enum</span>,<span class="title">class</span>,<span class="title">tuple</span></div><div class="line"></div><div class="line">//<span class="title">typle</span> 元组类型</div><div class="line">//声明</div><div class="line"><span class="title">let</span> <span class="title">someTuple</span>:(<span class="title">Int</span>,<span class="title">Int</span>) = (10,23)</div><div class="line">//元组可以设置名称</div><div class="line"><span class="title">var</span> <span class="title">person</span> = (<span class="title">name</span>:"<span class="title">liuyw</span>",<span class="title">age</span>:30)</div><div class="line">//取值方式1</div><div class="line"><span class="title">person</span>.0</div><div class="line"><span class="title">person</span>.1</div><div class="line">//取值方式2</div><div class="line"><span class="title">person</span>.<span class="title">age</span></div><div class="line"><span class="title">person</span>.<span class="title">name</span></div><div class="line">//取值方式3</div><div class="line"><span class="title">var</span> (<span class="title">personName</span>,<span class="title">personAge</span>) = <span class="title">person</span></div><div class="line"><span class="title">personName</span></div><div class="line"><span class="title">personAge</span></div><div class="line"></div><div class="line"><span class="title">someTuple</span>.0或者<span class="title">tuple</span>.1</div><div class="line"></div><div class="line">//<span class="title">typealias</span></div><div class="line">//类型的别名关键字</div><div class="line"></div><div class="line">//函数类型</div><div class="line"><span class="title">func</span></div><div class="line"></div><div class="line">//可选类型</div><div class="line"><span class="title">var</span> <span class="title">num</span>:<span class="title">Int</span>? = <span class="title">nil</span></div><div class="line"><span class="title">var</span> <span class="title">num1</span>:<span class="title">Optional</span>&lt;<span class="title">Int</span>&gt; = <span class="title">nil</span></div><div class="line"></div><div class="line">//隐式解析可选</div><div class="line"><span class="title">var</span> <span class="title">num</span>:<span class="title">Int</span>!</div><div class="line"><span class="title">var</span> <span class="title">num1</span>:<span class="title">ImplicitlyUnwrappedOptional</span>&lt;<span class="title">Int</span>&gt;</div><div class="line"></div><div class="line">//协议合成类型</div><div class="line"><span class="title">var</span> <span class="title">someProtocol</span>:<span class="title">protocol</span>&lt;<span class="title">protocol1</span>,<span class="title">protocol2</span>&gt;</span></div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2016/06/23/Switf语法速记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">移动开发</a>
-        		</li>
-      		
-		</ul>
-
-		<span id="busuanzi_container_page_pv" style="display: none">
-		</span>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/23/Switf语法速记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/17/first-blog/">第一篇博客</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/17/first-blog/" class="archive-article-date">
-  	<time datetime="2016-06-17T04:55:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>拖延症晚期，终于把博客搭建起来了。以后就在这记录工作和学习中的一些技巧吧。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-
-		<span id="busuanzi_container_page_pv" style="display: none">
-		</span>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/17/first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -653,8 +362,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
