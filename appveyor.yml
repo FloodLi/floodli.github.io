@@ -10,6 +10,7 @@ install:
   - npm install -g npm
   - npm install
   - npm install -g hexo
+  - npm i hexo-generator-json-content --save
 
 build_script:
   - hexo generate
