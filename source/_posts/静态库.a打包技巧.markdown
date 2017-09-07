@@ -1,0 +1,163 @@
+---
+layout: post
+title:  静态库.a打包技巧
+date:   2017-04-28 16:04:11
+comments: true
+tags: 
+	- 移动开发
+---
+
+# 简介
+
+##### 在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）
+
+### 静态库和动态库的存在形式
+
+```
+静态库：.a 和 .framework
+动态库：.dylib 和 .framework
+```
+
+### 静态库和动态库的区别
+
+```
+静态库：链接时，静态库会被完整地复制到可执行文件中，被多次使用就有多份冗余拷贝
+动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存
+```
+
+<!--more-->
+
+### 静态库文件的版本（4种）
+- 真机-Debug版本
+- 真机-Release版本
+- 模拟器-Debug版本
+- 模拟器-Release版本
+
+###### Debug(调试)版本
+```
+1.含完整的符号信息，以方便调试
+2.不会对代码进行优化
+```
+###### Release(发布)版本
+```
+1.不会包含完整的符号信息
+2.的执行代码是进行过优化的
+3.的大小会比Debug版本的略小
+4.在执行速度方面，Release版本会更快些（但不意味着会有显著的提升）
+```
+###### 所以我们一般开发中都打包Release（发布）版本，提供外界
+
+# 设备的CPU架构简介（补充知识）
+### 模拟器：
+```
+4s~5 : i386
+5s~6plus : x86_64
+```
+### 模拟器：
+
+```
+3gs~4s : armv7
+5~5c : armv7s （静态库只要支持了armv7，就可以跑在armv7s的架构上）
+5s~6plus : arm64
+```
+
+# 打包疑难点
+> 本文只讨论release(发布)版本
+
+
+### 1. 全平台支持
+##### release版本是提供外界使用的，所以通常需要全平台支持
+如图，对应修改Build Active Architecture Only的为NO即可(本文打包release版所以只修改了release对应的选项)
+> 修改后打包出来静态库文件会变大
+
+![修改全平台支持](/assets/blogImg/静态库.a打包技巧01.png "修改全平台支持")
+对应修改Edit Scheme为release
+![修改全平台支持](/assets/blogImg/静态库.a打包技巧02.png "修改全平台支持")
+
+### 2.同时支持真机与模拟器
+##### 真机和模拟器的静态库，是不一样的，不能同时适用在真机和模拟器上，但要满足这要求的话，要对编译好的两个静态库进行合并
+> 合并后的好坏：
+
+```
+好：开发过程中既可以在真机上调试，也可以在模拟器上调试
+坏：如果静态库太大，合并打包后，会非常大，因此很多第三方的静态库的.a是区分版本的
+```
+通过终端命令我们可以合并两个静态库
+```
+lipo -create Debug-iphoneos/xxx.a Debug-iphonesimulator/xxx.a -output xxx.a
+```
+
+# 技巧
+##### 每次打包都需要通过终端合并，很烦躁，有没有什么方法能够自动合并呢？
+答案：有
+可以在Build Phases里添加Run Script Phases，通过脚本来合并
+![添加脚本](/assets/blogImg/静态库.a打包技巧03.png "添加脚本")
+
+``` shell
+if [ "${ACTION}" = "build" ]
+then
+#目标目录
+INSTALL_DIR=${SRCROOT}/Products
+#	echo "INSTALL_DIR=${INSTALL_DIR}"
+#目标头文件目录
+INSTALL_DIR_HEADERS=${SRCROOT}/Products/Headers
+
+#真机文件
+DEVICE_DIR=${BUILD_ROOT}/${CONFIGURATION}-iphoneos
+#	echo "DEVICE_DIR=${DEVICE_DIR}"
+
+#模拟器文件
+SIMULATOR_DIR=${BUILD_ROOT}/${CONFIGURATION}-iphonesimulator
+#	echo "SIMULATOR_DIR=${SIMULATOR_DIR}"
+
+#判断目标文件夹是否存在，存在则删除该文件夹
+if [ -d "${INSTALL_DIR}" ]
+then
+rm -rf "${INSTALL_DIR}"
+fi
+mkdir -p "${INSTALL_DIR}"
+mkdir -p "${INSTALL_DIR}/iphone"
+mkdir -p "${INSTALL_DIR}/simulator"
+mkdir -p "${INSTALL_DIR_HEADERS}"
+
+#copy .a文件
+cp -R "${DEVICE_DIR}/lib${PROJECT_NAME}.a" "${INSTALL_DIR}/iphone/"
+cp -R "${SIMULATOR_DIR}/lib${PROJECT_NAME}.a" "${INSTALL_DIR}/simulator/"
+#copy头文件
+cp -R "${DEVICE_DIR}/include" "${INSTALL_DIR_HEADERS}"
+cp -R "${DEVICE_DIR}/usr" "${INSTALL_DIR_HEADERS}"
+
+DEVICE_DIR_A=${INSTALL_DIR}/iphone/lib${PROJECT_NAME}.a
+#	echo "DEVICE_DIR_A=${DEVICE_DIR_A}"
+SIMULATOR_DIR_A=${INSTALL_DIR}/simulator/lib${PROJECT_NAME}.a
+#	echo "SIMULATOR_DIR_A=${SIMULATOR_DIR_A}"
+
+# 合并.a文件
+lipo -create "${DEVICE_DIR_A}" "${SIMULATOR_DIR_A}" -output "${INSTALL_DIR}/lib${PROJECT_NAME}.a"
+#open "${DEVICE_DIR}"
+open "${SRCROOT}/Products"
+fi
+```
+
+以后我们只要在模拟器下和真机下各打包一次，脚本就会自动帮我们合并好.a了。
+> 建议打包前clean一下
+
+![打包后](/assets/blogImg/静态库.a打包技巧04.png "打包后")
+
+验证合并后的.a
+![验证平台](/assets/blogImg/静态库.a打包技巧05.png "验证平台")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
