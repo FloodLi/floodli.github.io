@@ -93,7 +93,7 @@ disqus: false
 
 #5、Gitment
 gitment_owner: 19904540      #你的 GitHub ID
-gitment_repo: 'https://github.com/FloodLi/floodli.github.io'          #存储评论的 repo
+gitment_repo: 'https://github.com/FloodLi/floodli.github.io/issues'          #存储评论的 repo
 gitment_oauth:
   client_id: '5b8aaa4af98cab0597e5'           #client ID
   client_secret: '5a555f869fff23f9ed5f9fde9e426f1355806408'       #client secret
