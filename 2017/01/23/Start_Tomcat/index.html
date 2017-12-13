@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcar_user.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_edit_bash_profile.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_setclasspath.png">
-<meta property="og:updated_time" content="2017-09-22T01:01:18.538Z">
+<meta property="og:updated_time" content="2017-12-13T02:02:22.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下启动Tomcat">
 <meta name="twitter:description" content="一、安装Java官网下载jdk安装地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 二、下载启动Tomcat1.下载Tomcat，地址：http://tomcat.apache.org/download-80.cgimac下载zip和tar.gz都行，我下载的是zip">
@@ -171,20 +171,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、安装Java"><a href="#一、安装Java" class="headerlink" title="一、安装Java"></a>一、安装Java</h4><p>官网下载jdk安装<br>地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-<h4 id="二、下载启动Tomcat"><a href="#二、下载启动Tomcat" class="headerlink" title="二、下载启动Tomcat"></a>二、下载启动Tomcat</h4><p>1.下载Tomcat，地址：<a href="http://tomcat.apache.org/download-80.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-80.cgi</a><br>mac下载zip和tar.gz都行，我下载的是zip<br><img src="/assets/blogImg/tomcat_download.png" alt=""><br><a id="more"></a></p>
+        <h4 id="一、安装Java"><a href="#一、安装Java" class="headerlink" title="一、安装Java"></a>一、安装Java</h4><p>官网下载jdk安装<br>地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+<h4 id="二、下载启动Tomcat"><a href="#二、下载启动Tomcat" class="headerlink" title="二、下载启动Tomcat"></a>二、下载启动Tomcat</h4><p>1.下载Tomcat，地址：<a href="http://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">http://tomcat.apache.org/download-80.cgi</a><br>mac下载zip和tar.gz都行，我下载的是zip<br><img src="/assets/blogImg/tomcat_download.png" alt=""><br><a id="more"></a></p>
 <p>2.解压缩之后直接拷贝到资源库中，为方便管理解压后文件夹名称为Tomcat，具体位置如下:<br><img src="/assets/blogImg/tomcat_instail.png" alt=""></p>
-<p>打开终端，输入以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo sh /Library/Tomcat/bin/startup.sh</div></pre></td></tr></table></figure></p>
+<p>打开终端，输入以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo sh /Library/Tomcat/bin/startup.sh</span><br></pre></td></tr></table></figure></p>
 <p>浏览器中输入localhost:8080，就可以看到一下效果:<br><img src="/assets/blogImg/tomcat_start.png" alt=""></p>
 <h4 id="三、安装过程中遇到的问题"><a href="#三、安装过程中遇到的问题" class="headerlink" title="三、安装过程中遇到的问题"></a>三、安装过程中遇到的问题</h4><blockquote>
 <p>1.执行启动命令时提示No such file or directory错误</p>
 </blockquote>
-<p>需要执行以下命令赋予权限：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo chmod 755 /Library/Tomcat/bin/*.sh</div></pre></td></tr></table></figure></p>
+<p>需要执行以下命令赋予权限：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chmod 755 /Library/Tomcat/bin/*.sh</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>2.执行启动命令时提示JAVA_HOME或JRE_HOME错误</p>
 </blockquote>
-<p>修改用户全局变量：<br>打开用户根目录下的.bash_profile文件<br><img src="/assets/blogImg/tomcar_user.png" alt=""><br>添加如下两行，如图<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=`/usr/libexec/java_home`</div><div class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</div></pre></td></tr></table></figure></p>
-<p><img src="/assets/blogImg/tomcat_edit_bash_profile.png" alt=""><br>更新配置的环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> .bash_profile</div></pre></td></tr></table></figure></p>
+<p>修改用户全局变量：<br>打开用户根目录下的.bash_profile文件<br><img src="/assets/blogImg/tomcar_user.png" alt=""><br>添加如下两行，如图<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=`/usr/libexec/java_home`</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br></pre></td></tr></table></figure></p>
+<p><img src="/assets/blogImg/tomcat_edit_bash_profile.png" alt=""><br>更新配置的环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure></p>
 <p>也可以修改Tomcat/bin/setclasspath.sh环境变量<br><img src="/assets/blogImg/tomcat_setclasspath.png" alt=""></p>
 
       
@@ -414,11 +414,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
             
             <div class="clearfix"></div>

@@ -162,8 +162,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h5 id="在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）"><a href="#在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）" class="headerlink" title="在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）"></a>在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）</h5><h3 id="静态库和动态库的存在形式"><a href="#静态库和动态库的存在形式" class="headerlink" title="静态库和动态库的存在形式"></a>静态库和动态库的存在形式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">静态库：.a 和 .framework</div><div class="line">动态库：.dylib 和 .framework</div></pre></td></tr></table></figure>
-<h3 id="静态库和动态库的区别"><a href="#静态库和动态库的区别" class="headerlink" title="静态库和动态库的区别"></a>静态库和动态库的区别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">静态库：链接时，静态库会被完整地复制到可执行文件中，被多次使用就有多份冗余拷贝</div><div class="line">动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存</div></pre></td></tr></table></figure>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h5 id="在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）"><a href="#在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）" class="headerlink" title="在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）"></a>在企业开发中，一些核心技术或者常用框架，出于安全性和稳定性的考虑，不想被外界知道，所以会把核心代码打包成静态库，只暴露头文件给程序员使用（比如：友盟、百度地图等第三方的sdk）</h5><h3 id="静态库和动态库的存在形式"><a href="#静态库和动态库的存在形式" class="headerlink" title="静态库和动态库的存在形式"></a>静态库和动态库的存在形式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">静态库：.a 和 .framework</span><br><span class="line">动态库：.dylib 和 .framework</span><br></pre></td></tr></table></figure>
+<h3 id="静态库和动态库的区别"><a href="#静态库和动态库的区别" class="headerlink" title="静态库和动态库的区别"></a>静态库和动态库的区别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">静态库：链接时，静态库会被完整地复制到可执行文件中，被多次使用就有多份冗余拷贝</span><br><span class="line">动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2017/04/28/静态库.a打包技巧/#more">more >></a>
         
@@ -239,8 +239,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、安装Java"><a href="#一、安装Java" class="headerlink" title="一、安装Java"></a>一、安装Java</h4><p>官网下载jdk安装<br>地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-<h4 id="二、下载启动Tomcat"><a href="#二、下载启动Tomcat" class="headerlink" title="二、下载启动Tomcat"></a>二、下载启动Tomcat</h4><p>1.下载Tomcat，地址：<a href="http://tomcat.apache.org/download-80.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-80.cgi</a><br>mac下载zip和tar.gz都行，我下载的是zip<br><img src="/assets/blogImg/tomcat_download.png" alt=""><br>
+        <h4 id="一、安装Java"><a href="#一、安装Java" class="headerlink" title="一、安装Java"></a>一、安装Java</h4><p>官网下载jdk安装<br>地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+<h4 id="二、下载启动Tomcat"><a href="#二、下载启动Tomcat" class="headerlink" title="二、下载启动Tomcat"></a>二、下载启动Tomcat</h4><p>1.下载Tomcat，地址：<a href="http://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">http://tomcat.apache.org/download-80.cgi</a><br>mac下载zip和tar.gz都行，我下载的是zip<br><img src="/assets/blogImg/tomcat_download.png" alt=""><br>
         
           <a class="article-more-a" href="/2017/01/23/Start_Tomcat/#more">more >></a>
         
@@ -316,7 +316,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、系统自带动画效果"><a href="#一、系统自带动画效果" class="headerlink" title="一、系统自带动画效果"></a>一、系统自带动画效果</h4><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// layer层动画</span></div><div class="line"><span class="built_in">CATransition</span> *transition = [<span class="built_in">CATransition</span> animation];</div><div class="line"><span class="comment">// 动画效果</span></div><div class="line">transition.type = <span class="string">@"rippleEffect"</span>;</div><div class="line"><span class="comment">// 动画方向</span></div><div class="line">[transition setSubtype: kCATransitionFromBottom];</div><div class="line"><span class="comment">// 动画时长</span></div><div class="line">[transition setDuration:<span class="number">1</span>];</div><div class="line"><span class="comment">// 动画重复次数, NSIntegerMax 无限次数</span></div><div class="line">[transition setRepeatCount:<span class="built_in">NSIntegerMax</span>];</div><div class="line"><span class="comment">// 给myView的layer属性添加一个动画效果</span></div><div class="line">[<span class="keyword">self</span>.myView.layer addAnimation:transition forKey:<span class="string">@"transition"</span>];</div></pre></td></tr></table></figure>
+        <h4 id="一、系统自带动画效果"><a href="#一、系统自带动画效果" class="headerlink" title="一、系统自带动画效果"></a>一、系统自带动画效果</h4><figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// layer层动画</span></span><br><span class="line"><span class="built_in">CATransition</span> *transition = [<span class="built_in">CATransition</span> animation];</span><br><span class="line"><span class="comment">// 动画效果</span></span><br><span class="line">transition.type = <span class="string">@"rippleEffect"</span>;</span><br><span class="line"><span class="comment">// 动画方向</span></span><br><span class="line">[transition setSubtype: kCATransitionFromBottom];</span><br><span class="line"><span class="comment">// 动画时长</span></span><br><span class="line">[transition setDuration:<span class="number">1</span>];</span><br><span class="line"><span class="comment">// 动画重复次数, NSIntegerMax 无限次数</span></span><br><span class="line">[transition setRepeatCount:<span class="built_in">NSIntegerMax</span>];</span><br><span class="line"><span class="comment">// 给myView的layer属性添加一个动画效果</span></span><br><span class="line">[<span class="keyword">self</span>.myView.layer addAnimation:transition forKey:<span class="string">@"transition"</span>];</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>附type值列表</p>
 </blockquote>
@@ -397,7 +397,7 @@
       
         <p>最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。</p>
 <h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个库的作用就是能在程序运行的时候动态加载我们自己写的 dylib 动态运行库。而由于非越狱手机系统里面是没有这个库的，所以我们需要直接将这个库打包进 ipa 当中，使用它的 API 实现注入。</p>
-<p>关于注入的原理，可以参考这篇文章：<a href="http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653577384&amp;idx=1&amp;sn=b44a9c9651bf09c5bea7e0337031c53c&amp;scene=0#wechat_redirect" title="移动App入侵与逆向破解技术－iOS篇" target="_blank" rel="external">移动App入侵与逆向破解技术－iOS篇</a>。</p>
+<p>关于注入的原理，可以参考这篇文章：<a href="http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653577384&amp;idx=1&amp;sn=b44a9c9651bf09c5bea7e0337031c53c&amp;scene=0#wechat_redirect" title="移动App入侵与逆向破解技术－iOS篇" target="_blank" rel="noopener">移动App入侵与逆向破解技术－iOS篇</a>。</p>
 <h4 id="获取砸壳版本的微信-ipa"><a href="#获取砸壳版本的微信-ipa" class="headerlink" title="获取砸壳版本的微信 ipa"></a>获取砸壳版本的微信 ipa</h4>
         
           <a class="article-more-a" href="/2017/01/12/免越狱版iOS抢红包插件/#more">more >></a>
@@ -474,9 +474,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。"><a href="#MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。" class="headerlink" title="MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。"></a>MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。</h1><h5 id="1：下载并解压mcrypt-2-6-8-tar-bz2。（2-6-8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）"><a href="#1：下载并解压mcrypt-2-6-8-tar-bz2。（2-6-8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）" class="headerlink" title="1：下载并解压mcrypt-2.6.8.tar.bz2。（2.6.8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）"></a>1：下载并解压mcrypt-2.6.8.tar.bz2。（2.6.8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）</h5><h5 id="2：在终端执行命令（注意如下命令需要安装xcode支持）："><a href="#2：在终端执行命令（注意如下命令需要安装xcode支持）：" class="headerlink" title="2：在终端执行命令（注意如下命令需要安装xcode支持）："></a>2：在终端执行命令（注意如下命令需要安装xcode支持）：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~/Downloads/mcrypt-2.5.8</div><div class="line">./configure --disable-posix-threads --enable-static</div><div class="line">make</div><div class="line">sudo make install</div></pre></td></tr></table></figure>
+        <h1 id="MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。"><a href="#MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。" class="headerlink" title="MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。"></a>MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法。</h1><h5 id="1：下载并解压mcrypt-2-6-8-tar-bz2。（2-6-8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）"><a href="#1：下载并解压mcrypt-2-6-8-tar-bz2。（2-6-8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）" class="headerlink" title="1：下载并解压mcrypt-2.6.8.tar.bz2。（2.6.8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）"></a>1：下载并解压mcrypt-2.6.8.tar.bz2。（2.6.8为版本号，可以自行选择，但是注意后边步骤要与下载的版本号一致。）</h5><h5 id="2：在终端执行命令（注意如下命令需要安装xcode支持）："><a href="#2：在终端执行命令（注意如下命令需要安装xcode支持）：" class="headerlink" title="2：在终端执行命令（注意如下命令需要安装xcode支持）："></a>2：在终端执行命令（注意如下命令需要安装xcode支持）：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Downloads/mcrypt-2.5.8</span><br><span class="line">./configure --disable-posix-threads --enable-static</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
 <p>或者使用homebrew安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install mcrypt</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install mcrypt</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2016/11/25/mac下php安装mcrypt扩展/#more">more >></a>
         
@@ -606,79 +606,6 @@
 
 
   
-    <article id="post-模版" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/23/模版/">测试</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/23/模版/" class="archive-article-date">
-  	<time datetime="2016-06-23T09:45:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">移动开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/23/模版/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Switf语法速记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -699,7 +626,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-类型"><a href="#一-类型" class="headerlink" title="(一)类型"></a>(一)类型</h1><h2 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="type">Int</span>,<span class="type">String</span>,<span class="type">Double</span>,<span class="class"><span class="keyword">struct</span>,<span class="title">enum</span>,<span class="title">class</span>,<span class="title">tuple</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class">//<span class="title">typle</span> 元组类型</span></div><div class="line"><span class="class">//声明</span></div><div class="line"><span class="class"><span class="title">let</span> <span class="title">someTuple</span>:(<span class="title">Int</span>,<span class="title">Int</span>) = (10,23)</span></div><div class="line"><span class="class">//元组可以设置名称</span></div><div class="line"><span class="class"><span class="title">var</span> <span class="title">person</span> = (<span class="title">name</span>:"<span class="title">liuyw</span>",<span class="title">age</span>:30)</span></div><div class="line"><span class="class">//取值方式1</span></div><div class="line"><span class="class"><span class="title">person</span>.0</span></div><div class="line"><span class="class"><span class="title">person</span>.1</span></div><div class="line"><span class="class">//取值方式2</span></div><div class="line"><span class="class"><span class="title">person</span>.<span class="title">age</span></span></div><div class="line"><span class="class"><span class="title">person</span>.<span class="title">name</span></span></div><div class="line"><span class="class">//取值方式3</span></div><div class="line"><span class="class"><span class="title">var</span> (<span class="title">personName</span>,<span class="title">personAge</span>) = <span class="title">person</span></span></div><div class="line"><span class="class"><span class="title">personName</span></span></div><div class="line"><span class="class"><span class="title">personAge</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">someTuple</span>.0或者<span class="title">tuple</span>.1</span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class">//<span class="title">typealias</span></span></div><div class="line"><span class="class">//类型的别名关键字</span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class">//函数类型</span></div><div class="line"><span class="class"><span class="title">func</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class">//可选类型</span></div><div class="line"><span class="class"><span class="title">var</span> <span class="title">num</span>:<span class="title">Int</span>? = <span class="title">nil</span></span></div><div class="line"><span class="class"><span class="title">var</span> <span class="title">num1</span>:<span class="title">Optional</span>&lt;<span class="title">Int</span>&gt; = <span class="title">nil</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class">//隐式解析可选</span></div><div class="line"><span class="class"><span class="title">var</span> <span class="title">num</span>:<span class="title">Int</span>!</span></div><div class="line"><span class="class"><span class="title">var</span> <span class="title">num1</span>:<span class="title">ImplicitlyUnwrappedOptional</span>&lt;<span class="title">Int</span>&gt;</span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class">//协议合成类型</span></div><div class="line"><span class="class"><span class="title">var</span> <span class="title">someProtocol</span>:<span class="title">protocol</span>&lt;<span class="title">protocol1</span>,<span class="title">protocol2</span>&gt;</span></div></pre></td></tr></table></figure>
+        <h1 id="一-类型"><a href="#一-类型" class="headerlink" title="(一)类型"></a>(一)类型</h1><h2 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Int</span>,<span class="type">String</span>,<span class="type">Double</span>,<span class="class"><span class="keyword">struct</span>,<span class="title">enum</span>,<span class="title">class</span>,<span class="title">tuple</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">//<span class="title">typle</span> 元组类型</span></span><br><span class="line"><span class="class">//声明</span></span><br><span class="line"><span class="class"><span class="title">let</span> <span class="title">someTuple</span>:(<span class="title">Int</span>,<span class="title">Int</span>) = (10,23)</span></span><br><span class="line"><span class="class">//元组可以设置名称</span></span><br><span class="line"><span class="class"><span class="title">var</span> <span class="title">person</span> = (<span class="title">name</span>:"<span class="title">liuyw</span>",<span class="title">age</span>:30)</span></span><br><span class="line"><span class="class">//取值方式1</span></span><br><span class="line"><span class="class"><span class="title">person</span>.0</span></span><br><span class="line"><span class="class"><span class="title">person</span>.1</span></span><br><span class="line"><span class="class">//取值方式2</span></span><br><span class="line"><span class="class"><span class="title">person</span>.<span class="title">age</span></span></span><br><span class="line"><span class="class"><span class="title">person</span>.<span class="title">name</span></span></span><br><span class="line"><span class="class">//取值方式3</span></span><br><span class="line"><span class="class"><span class="title">var</span> (<span class="title">personName</span>,<span class="title">personAge</span>) = <span class="title">person</span></span></span><br><span class="line"><span class="class"><span class="title">personName</span></span></span><br><span class="line"><span class="class"><span class="title">personAge</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">someTuple</span>.0或者<span class="title">tuple</span>.1</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">//<span class="title">typealias</span></span></span><br><span class="line"><span class="class">//类型的别名关键字</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">//函数类型</span></span><br><span class="line"><span class="class"><span class="title">func</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">//可选类型</span></span><br><span class="line"><span class="class"><span class="title">var</span> <span class="title">num</span>:<span class="title">Int</span>? = <span class="title">nil</span></span></span><br><span class="line"><span class="class"><span class="title">var</span> <span class="title">num1</span>:<span class="title">Optional</span>&lt;<span class="title">Int</span>&gt; = <span class="title">nil</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">//隐式解析可选</span></span><br><span class="line"><span class="class"><span class="title">var</span> <span class="title">num</span>:<span class="title">Int</span>!</span></span><br><span class="line"><span class="class"><span class="title">var</span> <span class="title">num1</span>:<span class="title">ImplicitlyUnwrappedOptional</span>&lt;<span class="title">Int</span>&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">//协议合成类型</span></span><br><span class="line"><span class="class"><span class="title">var</span> <span class="title">someProtocol</span>:<span class="title">protocol</span>&lt;<span class="title">protocol1</span>,<span class="title">protocol2</span>&gt;</span></span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2016/06/23/Switf语法速记/#more">more >></a>
         
@@ -914,11 +841,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
             
             <div class="clearfix"></div>
