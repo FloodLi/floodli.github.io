@@ -11,6 +11,7 @@ install:
   - npm install -g npm
   - npm install
   - npm install -g hexo
+  - npm install --save live2d-widget-model-wanko
 
 build_script:
   - hexo generate
