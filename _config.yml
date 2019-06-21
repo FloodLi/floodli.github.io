@@ -73,6 +73,7 @@ deploy:
   repo: https://github.com/FloodLi/floodli.github.io.git
   branch: master
 
+
 live2d:
   enable: true
   scriptFrom: local
@@ -82,16 +83,15 @@ live2d:
   tagMode: false
   debug: false
   model:
-    use: wanko
+    use: live2d-widget-model-wanko
   display:
     position: right
-    width: 300
-    height: 400
+    width: 150
+    height: 300
   mobile:
     show: true
   react:
     opacity: 0.7
-
 
 jsonContent:
     meta: false
