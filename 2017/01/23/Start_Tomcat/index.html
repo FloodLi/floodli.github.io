@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Mac下启动Tomcat | FloodLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,13 +15,14 @@
 <meta property="og:url" content="http://yoursite.com/2017/01/23/Start_Tomcat/index.html">
 <meta property="og:site_name" content="FloodLi的博客">
 <meta property="og:description" content="一、安装Java官网下载jdk安装地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 二、下载启动Tomcat1.下载Tomcat，地址：http://tomcat.apache.org/download-80.cgimac下载zip和tar.gz都行，我下载的是zip">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_download.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_instail.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_start.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcar_user.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_edit_bash_profile.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/tomcat_setclasspath.png">
-<meta property="og:updated_time" content="2017-12-13T02:04:39.425Z">
+<meta property="og:updated_time" content="2019-06-21T04:09:25.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下启动Tomcat">
 <meta name="twitter:description" content="一、安装Java官网下载jdk安装地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 二、下载启动Tomcat1.下载Tomcat，地址：http://tomcat.apache.org/download-80.cgimac下载zip和tar.gz都行，我下载的是zip">
@@ -44,7 +45,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -172,10 +173,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="一、安装Java"><a href="#一、安装Java" class="headerlink" title="一、安装Java"></a>一、安装Java</h4><p>官网下载jdk安装<br>地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-<h4 id="二、下载启动Tomcat"><a href="#二、下载启动Tomcat" class="headerlink" title="二、下载启动Tomcat"></a>二、下载启动Tomcat</h4><p>1.下载Tomcat，地址：<a href="http://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">http://tomcat.apache.org/download-80.cgi</a><br>mac下载zip和tar.gz都行，我下载的是zip<br><img src="/assets/blogImg/tomcat_download.png" alt=""><br><a id="more"></a></p>
-<p>2.解压缩之后直接拷贝到资源库中，为方便管理解压后文件夹名称为Tomcat，具体位置如下:<br><img src="/assets/blogImg/tomcat_instail.png" alt=""></p>
+<h4 id="二、下载启动Tomcat"><a href="#二、下载启动Tomcat" class="headerlink" title="二、下载启动Tomcat"></a>二、下载启动Tomcat</h4><p>1.下载Tomcat，地址：<a href="http://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">http://tomcat.apache.org/download-80.cgi</a><br>mac下载zip和tar.gz都行，我下载的是zip<br><img src="/assets/blogImg/tomcat_download.png" alt><br><a id="more"></a></p>
+<p>2.解压缩之后直接拷贝到资源库中，为方便管理解压后文件夹名称为Tomcat，具体位置如下:<br><img src="/assets/blogImg/tomcat_instail.png" alt></p>
 <p>打开终端，输入以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo sh /Library/Tomcat/bin/startup.sh</span><br></pre></td></tr></table></figure></p>
-<p>浏览器中输入localhost:8080，就可以看到一下效果:<br><img src="/assets/blogImg/tomcat_start.png" alt=""></p>
+<p>浏览器中输入localhost:8080，就可以看到一下效果:<br><img src="/assets/blogImg/tomcat_start.png" alt></p>
 <h4 id="三、安装过程中遇到的问题"><a href="#三、安装过程中遇到的问题" class="headerlink" title="三、安装过程中遇到的问题"></a>三、安装过程中遇到的问题</h4><blockquote>
 <p>1.执行启动命令时提示No such file or directory错误</p>
 </blockquote>
@@ -183,9 +184,9 @@
 <blockquote>
 <p>2.执行启动命令时提示JAVA_HOME或JRE_HOME错误</p>
 </blockquote>
-<p>修改用户全局变量：<br>打开用户根目录下的.bash_profile文件<br><img src="/assets/blogImg/tomcar_user.png" alt=""><br>添加如下两行，如图<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=`/usr/libexec/java_home`</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br></pre></td></tr></table></figure></p>
-<p><img src="/assets/blogImg/tomcat_edit_bash_profile.png" alt=""><br>更新配置的环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure></p>
-<p>也可以修改Tomcat/bin/setclasspath.sh环境变量<br><img src="/assets/blogImg/tomcat_setclasspath.png" alt=""></p>
+<p>修改用户全局变量：<br>打开用户根目录下的.bash_profile文件<br><img src="/assets/blogImg/tomcar_user.png" alt><br>添加如下两行，如图<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=`/usr/libexec/java_home`</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br></pre></td></tr></table></figure></p>
+<p><img src="/assets/blogImg/tomcat_edit_bash_profile.png" alt><br>更新配置的环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>也可以修改Tomcat/bin/setclasspath.sh环境变量<br><img src="/assets/blogImg/tomcat_setclasspath.png" alt></p>
 
       
 
@@ -339,7 +340,7 @@ gitment.render('gitment-ctn')
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 FloodLi
+    		&copy; 2019 FloodLi
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -537,5 +538,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>

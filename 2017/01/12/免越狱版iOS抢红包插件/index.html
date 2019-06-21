@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>免越狱版iOS抢红包插件 | FloodLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,9 +15,10 @@
 <meta property="og:url" content="http://yoursite.com/2017/01/12/免越狱版iOS抢红包插件/index.html">
 <meta property="og:site_name" content="FloodLi的博客">
 <meta property="og:description" content="最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。 原理虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/免越狱版iOS抢红包插件01.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/免越狱版iOS抢红包插件02.png">
-<meta property="og:updated_time" content="2017-12-13T02:04:39.425Z">
+<meta property="og:updated_time" content="2019-06-21T04:09:25.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="免越狱版iOS抢红包插件">
 <meta name="twitter:description" content="最近在看《iOS应用逆向工程》这本书，就在github上找了些关于免越狱微信抢红包的资料，结合着各位大神的教程，于是就开始了一步步尝试，此篇主要的目的是为了防止自己忘记。 原理虽然这里并不深入讲解，但是最基本的原理我们还是要理解的，因为后面所做的工作，都是基于这个原理来进行开发的。越狱机器之所以能使用 tweak，主要是因为在越狱的时候，手机里就安装了 mobilesubstrate 这个库，这个">
@@ -40,7 +41,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -192,14 +193,14 @@
 <p>在开始打包之前，请先将 WeChat.app 里面的 Watch 目录删除，这个目录是跟 Watch 有关的，如果不删除的话，会导致后继的安装步骤出问题。出现 A WatchKit app within this app is not a valid bundle 的错误。</p>
 <h4 id="打包并重签名"><a href="#打包并重签名" class="headerlink" title="打包并重签名"></a>打包并重签名</h4><p>打包 ipa 与重签名可以直接使用图形化工具 <a href="https://github.com/DanTheMan827/ios-app-signer" title="ios-app-signer" target="_blank" rel="noopener">ios-app-signer</a> 来完成。</p>
 <p>这个工具可以自动加载出本机的证书以及 Provisioning Profile 文件，使用起来十分方便，当然也可以手动选择证书文件。<br>如果是使用个人开发者证书，需要先将设备的 UUID 加到 Provisioning Profile 中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果是使用个人开发者证书，需要先将设备的 UUID 加到 Provisioning Profile 中。</span><br></pre></td></tr></table></figure></p>
-<p>我这里是直接从一个 archive 过的应用中提取 embedded.mobileprovision 文件，并在 Provisioning Profile 一栏中选择 Choose Custom File 使用这个文件。<br><img src="/assets/blogImg/免越狱版iOS抢红包插件01.png" alt=""><br>点击 start 后，指定保存路径，iOS App Signer 就会帮你搞定所有事情。</p>
+<p>我这里是直接从一个 archive 过的应用中提取 embedded.mobileprovision 文件，并在 Provisioning Profile 一栏中选择 Choose Custom File 使用这个文件。<br><img src="/assets/blogImg/免越狱版iOS抢红包插件01.png" alt><br>点击 start 后，指定保存路径，iOS App Signer 就会帮你搞定所有事情。</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>安装ideviceinstaller<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装ipa包用的，也可以通过itool之类的工具，不过ideviceinstaller可以看到安装过程的过程，方便我们找到出错原因。</span><br></pre></td></tr></table></figure></p>
 <p>执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ideviceinstaller</span><br></pre></td></tr></table></figure></p>
 <p>如果提示brew命令找不到，那就是你的Mac还没有安装Homebrew<br>常见的报错信息：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Could not connect to lockdownd, error code -5</span><br></pre></td></tr></table></figure></p>
 <p>这个时候只要重新安装libimobiledevice就可以了（因为ideviceinstaller依赖很多其他插件）<br>执行下面的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$   brew uninstall libimobiledevice</span><br><span class="line">$   brew install --HEAD libimobiledevice</span><br></pre></td></tr></table></figure></p>
 <p>连上你的手机执行下面的命令查看ideviceinstaller是否连接上手机：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ideviceinfo</span><br></pre></td></tr></table></figure></p>
 <p>如果打印出一大堆手机的信息表示连接成功可以安装ipa包，如果不成功请根据错误提示进行调整。执行下面的命令进行安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ ideviceinstaller -i WeChat.ipa </span><br><span class="line">WARNING: could not locate iTunesMetadata.plist <span class="keyword">in</span> archive!</span><br><span class="line">WARNING: could not locate Payload/WeChat.app/SC_Info/WeChat.sinf <span class="keyword">in</span> archive!</span><br><span class="line">Copying <span class="string">'WeChat.ipa'</span> to device... DONE.</span><br><span class="line">Installing <span class="string">'com.xxxxxxxxxxxx'</span></span><br><span class="line">- CreatingStagingDirectory (5%)</span><br><span class="line">- ExtractingPackage (15%)</span><br><span class="line">- InspectingPackage (20%)</span><br><span class="line">- TakingInstallLock (20%)</span><br><span class="line">- PreflightingApplication (30%)</span><br><span class="line">- InstallingEmbeddedProfile (30%)</span><br><span class="line">- VerifyingApplication (40%)</span><br><span class="line">- CreatingContainer (50%)</span><br><span class="line">- InstallingApplication (60%)</span><br><span class="line">- PostflightingApplication (70%)</span><br><span class="line">- SandboxingApplication (80%)</span><br><span class="line">- GeneratingApplicationMap (90%)</span><br><span class="line">- Complete</span><br></pre></td></tr></table></figure></p>
-<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p><img src="/assets/blogImg/免越狱版iOS抢红包插件02.png" alt=""></p>
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p><img src="/assets/blogImg/免越狱版iOS抢红包插件02.png" alt></p>
 
       
 
@@ -353,7 +354,7 @@ gitment.render('gitment-ctn')
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 FloodLi
+    		&copy; 2019 FloodLi
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -551,5 +552,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>
