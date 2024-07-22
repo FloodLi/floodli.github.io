@@ -6,8 +6,8 @@ on:
       - backup # 使用的分支名称
   workflow_dispatch:
 
-env: 
-  TZ: Asia/Shanghai
+#env: 
+#  TZ: Asia/Shanghai
 
 jobs:
   build:
