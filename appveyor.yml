@@ -33,4 +33,3 @@ on_success:
   - git commit -m "Update Static Site" 
   - git push origin %TARGET_BRANCH%
   - appveyor AddMessage "Static Site Updated"
-
