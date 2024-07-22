@@ -39,24 +39,18 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
+      - name: Install Hexo CLI
+        run: npm install -g hexo-cli
+        working-directory: ./blog
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
+      - name: Generate static pages
+        run: hexo generate
+        working-directory: ./blog
 
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: FloodLi/floodli.github.io
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  - name: Deploy to GitHub Pages
+    uses: peaceiris/actions-gh-pages@v3
+    with:
+      personal_token: ${{ secrets.PERSONAL_TOKEN }}
+      publish_dir: ./blog/public
+      external_repository: FloodLi/floodli.github.io
+      publish_branch: master
