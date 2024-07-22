@@ -42,7 +42,7 @@ jobs:
       - name: Install Hexo CLI
         run: 
           npm install -g hexo-cli
-          npm install --save live2d-widget-model-wanko
+          npm install live2d-widget-model-wanko
 
       - name: Generate static pages
         run: hexo generate
