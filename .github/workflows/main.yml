@@ -6,8 +6,8 @@ on:
       - backup # 使用的分支名称
   workflow_dispatch:
 
-#env: 
-#  TZ: Asia/Shanghai
+env: 
+  TZ: Asia/Shanghai
 
 jobs:
   build:
@@ -47,10 +47,10 @@ jobs:
         run: hexo generate
         working-directory: ./blog
 
-  - name: Deploy to GitHub Pages
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-      personal_token: ${{ secrets.PERSONAL_TOKEN }}
-      publish_dir: ./blog/public
-      external_repository: FloodLi/floodli.github.io
-      publish_branch: master
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: ./blog/public
+          external_repository: FloodLi/floodli.github.io
+          publish_branch: master
