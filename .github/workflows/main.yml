@@ -40,12 +40,12 @@ jobs:
         run: npm install
 
       - name: Install Hexo CLI
-        run: npm install -g hexo-cli
-        #working-directory: ./blog
+        run: 
+          npm install -g hexo-cli
+          npm install --save live2d-widget-model-wanko
 
       - name: Generate static pages
         run: hexo generate
-        #working-directory: ./blog
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
