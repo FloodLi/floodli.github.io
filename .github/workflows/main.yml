@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - backup # 使用的分支名称
+  workflow_dispatch:
 
 jobs:
   build:
