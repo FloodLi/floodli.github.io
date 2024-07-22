@@ -6,6 +6,9 @@ on:
       - backup # 使用的分支名称
   workflow_dispatch:
 
+env: 
+  TZ: Asia/Shanghai
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,9 +37,7 @@ jobs:
             ${{ runner.OS }}-npm-cache
 
       - name: Install Dependencies
-        run: 
-          sudo timedatectl set-timezone "Asia/Shanghai"
-          npm install
+        run: npm install
 
       - name: Build
         run: npm run build
