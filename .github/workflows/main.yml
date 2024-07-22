@@ -21,12 +21,12 @@ jobs:
           submodules: recursive
           ref: 'backup'
 
-      - name: Use Node.js 20
+      - name: Use Node.js 12
         uses: actions/setup-node@v4
         with:
           # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
           # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: "20"
+          node-version: "12"
 
       - name: Cache NPM dependencies
         uses: actions/cache@v4
