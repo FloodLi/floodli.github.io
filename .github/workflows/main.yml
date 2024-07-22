@@ -41,16 +41,16 @@ jobs:
 
       - name: Install Hexo CLI
         run: npm install -g hexo-cli
-        working-directory: ./blog
+        #working-directory: ./blog
 
       - name: Generate static pages
         run: hexo generate
-        working-directory: ./blog
+        #working-directory: ./blog
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: ./blog/public
+          publish_dir: /public
           external_repository: FloodLi/floodli.github.io
           publish_branch: master
